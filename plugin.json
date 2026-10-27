@@ -1,0 +1,6 @@
+{
+  "name": "agentic-investigate-plugin",
+  "description": "Autonomous multi-repository issue investigation plugin diagnosing root causes, grilling users, and formulating solutions.",
+  "version": "0.1.0",
+  "license": "MIT"
+}

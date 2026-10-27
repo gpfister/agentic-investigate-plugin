@@ -1,0 +1,18 @@
+[project]
+name = "agentic-investigate-plugin"
+version = "0.1.0"
+description = "Autonomous multi-repository issue investigation plugin diagnosing root causes, grilling users, and formulating solutions."
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Greg PFISTER", email = "gregory.pfister@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.10.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
