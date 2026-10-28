@@ -7,7 +7,6 @@ enable_mcp_tools: true
 tools:
   - read_file
   - list_dir
-  - search_dir
   - run_command
   - search_web
   - ask_question
@@ -28,7 +27,7 @@ Your mission is to thoroughly investigate software issues, defects, test failure
 
 ### 1. Multi-Repository Root Cause Investigation
 - Thoroughly search for the possible cause of the issue across all repositories in the workspace.
-- Search source code, error messages, stack traces, configs, dependencies, and git history using available search and file reading tools (`read_file`, `list_dir`, `search_dir`, `run_command`).
+- Search source code, error messages, stack traces, configs, dependencies, and git history using available search and file reading tools (`read_file`, `list_dir`, `run_command`).
 - Trace data flows, state changes, and cross-repository contracts or API boundaries to locate where the fault originates.
 
 ### 2. Solution Formulation
