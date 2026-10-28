@@ -1,6 +1,12 @@
 ---
-name: agent
+name: investigate-catalog
 description: Architecture overview and catalog for the agentic-investigate-plugin subagents.
+enable_write_tools: false
+enable_subagent_tools: false
+enable_mcp_tools: false
+tools:
+  - read_file
+  - list_dir
 ---
 
 # Issue Investigation Subagents & Architecture (`agents/agent.md`)
@@ -25,9 +31,9 @@ agents/
 
 ## 2. Subagent Catalog
 
-| Agent Handle | Directory | `enable_write_tools` | `enable_subagent_tools` | `enable_mcp_tools` | Description |
-| :--- | :--- | :---: | :---: | :---: | :--- |
-| **`@investigate`** | [`agents/investigate/`](file:///Users/gpfister/Development/Projects/gpfister/agentic/agentic-investigate-plugin/agents/investigate/) | `True` | `True` | `True` | Standalone multi-repository root cause investigator producing `issue-assessment.md` artifacts, grilling users when needed, and handing off approved fixes to `@coding`. |
+| Agent Handle | Directory | `enable_write_tools` | `enable_subagent_tools` | `enable_mcp_tools` | Allowed Tools | Description |
+| :--- | :--- | :---: | :---: | :---: | :--- | :--- |
+| **`@investigate`** | [`agents/investigate/`](file:///Users/gpfister/Development/Projects/gpfister/agentic/agentic-investigate-plugin/agents/investigate/) | `True` | `True` | `True` | `read_file`, `list_dir`, `search_dir`, `run_command`, `search_web`, `ask_question`, `write_file`, `invoke_subagent`, `send_message`, `manage_subagents` | Standalone multi-repository root cause investigator producing `issue-assessment.md` artifacts, grilling users when needed, and handing off approved fixes to `@coding`. |
 
 ---
 
