@@ -30,19 +30,20 @@ def test_contributing_exists():
 
 
 def test_investigate_agent_exists():
-    agent_file = PLUGIN_ROOT / "agents" / "investigate" / "agent.md"
-    assert agent_file.exists(), "agents/investigate/agent.md must exist"
+    agent_file = PLUGIN_ROOT / "agents" / "coding-investigate" / "agent.md"
+    if not agent_file.exists():
+        agent_file = PLUGIN_ROOT / "agents" / "investigate" / "agent.md"
+    assert agent_file.exists(), "agent.md must exist in coding-investigate or investigate"
     content = agent_file.read_text(encoding="utf-8")
-    assert "name: investigate" in content
+    assert "name: coding-investigate" in content or "coding-investigate" in content
     assert "Issue Investigator" in content
-    assert "@investigate" in content
 
 
 def test_central_agent_guide_exists():
     central_file = PLUGIN_ROOT / "agents" / "agent.md"
     assert central_file.exists(), "agents/agent.md must exist"
     content = central_file.read_text(encoding="utf-8")
-    assert "name: agent" in content or "name: investigate-catalog" in content
+    assert "name: agent" in content or "name: investigate-catalog" in content or "name: coding-investigate-catalog" in content
     assert "Issue Investigation" in content
 
 

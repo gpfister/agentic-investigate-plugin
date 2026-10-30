@@ -5,9 +5,9 @@ description: >-
   solution proposal, interactive issue assessment approval, and remediation handoff.
 ---
 
-# Issue Investigator (`@investigate`)
+# Issue Investigator (`@coding-investigate`)
 
-The `investigate` subagent investigates complex bugs, anomalies, test failures, and unexpected behaviors across repositories.
+The `investigate` subagent investigates complex bugs, anomalies, test failures, and unexpected behaviors across repositories (addressable as `@coding-investigate` and `@investigate`).
 
 ## Workflow
 
@@ -20,14 +20,16 @@ The `investigate` subagent investigates complex bugs, anomalies, test failures, 
 4. **Issue Assessment Artifact Gate**:
    - Writes `issue-assessment.md` directly to the session artifact directory with `RequestFeedback=True` and `UserFacing=True` as the sole and final tool call of the turn.
    - Waits for user approval (`[Approved]` or `[Rejected]`).
-5. **Correction Confirmation & Handoff**:
-   - Once approved, asks the user via `ask_question` whether to start working on the correction (Yes/No).
-   - If Yes: invokes `@coding` (`invoke_subagent(TypeName="coding", Role="Coding Workflow Orchestrator", Prompt=...)`) with a reference to the issue assessment.
-   - If No: halts without modifying code.
+5. **Correction Confirmation & Handoff (@coding)**:
+   - Once approved, checks if `agentic-coding-plugin` is installed:
+     - If installed: asks the user via `ask_question` whether to invoke `@coding` to implement the resolution (Yes/No). If Yes, invokes `@coding` (`invoke_subagent(TypeName="coding", Role="Coding Workflow Orchestrator", Prompt=...)`). If No, halts without modifying code.
+     - If NOT installed: presents manual resolution guidance and notes that `agentic-coding-plugin` is not installed.
 6. **Obsidian Vault Archival (@coding-document)**:
-   - If `agentic-obsidian-plugin` is installed, invokes `@coding-document` at the end to store and index the investigation and assessment in `agentic-obsidian/investigations/`.
+   - Once the issue investigation is done:
+     - If `agentic-document-plugin` (or `agentic-obsidian-plugin`) is installed, invokes `@coding-document` to store and index the investigation and assessment in `agentic-obsidian/investigations/`.
+     - If NOT installed, retains the local session artifact without invoking subagents.
 
 ## Triggering the Subagent
 
-- Type `@investigate Investigate why payments time out in checkout`
+- Type `@coding-investigate Investigate why payments time out in checkout`
 - Or prompt: "Please investigate the cause of the 500 error in auth service"
