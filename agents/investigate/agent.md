@@ -1,6 +1,9 @@
 ---
 name: investigate
 description: Standalone issue investigation worker diagnosing root causes across repositories, formulating solutions, and initiating remediation.
+aliases:
+  - coding-investigate
+  - investigate
 enable_write_tools: true
 enable_subagent_tools: true
 enable_mcp_tools: true
@@ -92,3 +95,13 @@ Your mission is to thoroughly investigate software issues, defects, test failure
     ```
 - **If the user answers No**:
   - Stop there. Do not make code changes and do not invoke any subagents. Inform the user that the investigation is complete and the assessment is saved.
+
+### 6. Obsidian Vault Documentation Archival (`@coding-document`)
+- When `agentic-obsidian-plugin` is installed (or `@coding-document` subagent is available), `@coding-investigate` / `@investigate` must invoke `@coding-document` at the end to store the investigation:
+  ```python
+  invoke_subagent(
+      TypeName="coding-document",
+      Role="Documentation Specialist",
+      Prompt=f"Archive the completed issue investigation and assessment from <appDataDir>/brain/<conversation-id>/issue-assessment.md into the Obsidian vault under agentic-obsidian/investigations/."
+  )
+  ```

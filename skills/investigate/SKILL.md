@@ -24,6 +24,8 @@ The `investigate` subagent investigates complex bugs, anomalies, test failures, 
    - Once approved, asks the user via `ask_question` whether to start working on the correction (Yes/No).
    - If Yes: invokes `@coding` (`invoke_subagent(TypeName="coding", Role="Coding Workflow Orchestrator", Prompt=...)`) with a reference to the issue assessment.
    - If No: halts without modifying code.
+6. **Obsidian Vault Archival (@coding-document)**:
+   - If `agentic-obsidian-plugin` is installed, invokes `@coding-document` at the end to store and index the investigation and assessment in `agentic-obsidian/investigations/`.
 
 ## Triggering the Subagent
 

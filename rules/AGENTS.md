@@ -22,3 +22,8 @@ This rule set applies whenever the `agentic-investigate-plugin` is active in an 
 ## 3. Communication & Links
 - Keep reports structured, concise, and high-signal.
 - Always generate clickable markdown links using the `file://` scheme when referencing affected files, functions, and configuration files.
+
+---
+
+## 4. Documentation Archival with @coding-document
+- When `agentic-obsidian-plugin` is active, `@coding-investigate` / `@investigate` must invoke `@coding-document` at the end of the investigation to store and archive the root-cause diagnosis, evidence, and remediation assessment in `agentic-obsidian/investigations/`.
